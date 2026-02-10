@@ -6,24 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import com.fairshare.app.databinding.FragmentSignInBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInFragment extends Fragment {
-
     private FragmentSignInBinding binding;
     private FirebaseAuth auth;
 
-    public SignInFragment() { }
+    public SignInFragment() {}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -42,45 +40,31 @@ public class SignInFragment extends Fragment {
             String email = String.valueOf(binding.editEmail.getText()).trim();
             String pass  = String.valueOf(binding.editPassword.getText());
 
-            if (TextUtils.isEmpty(email)) {
-                binding.tilEmail.setError("Email is required");
-                return;
-            } else {
-                binding.tilEmail.setError(null);
-            }
-
-            if (TextUtils.isEmpty(pass)) {
-                binding.tilPassword.setError("Password is required");
-                return;
-            } else {
-                binding.tilPassword.setError(null);
-            }
+            if (TextUtils.isEmpty(email)) { binding.tilEmail.setError("Email is required"); return; }
+            else binding.tilEmail.setError(null);
+            if (TextUtils.isEmpty(pass))  { binding.tilPassword.setError("Password is required"); return; }
+            else binding.tilPassword.setError(null);
 
             binding.btnSignIn.setEnabled(false);
-
             auth.signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener(requireActivity(), (Task<AuthResult> task) -> {
-                        binding.btnSignIn.setEnabled(true);
-                        if (task.isSuccessful()) {
-                            nav.navigate(R.id.action_signInFragment_to_homeFragment);
-                        } else {
-                            Toast.makeText(requireContext(),
-                                    "Email or password incorrect.",
-                                    Toast.LENGTH_SHORT).show();
+                    .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                        @Override public void onComplete(@NonNull Task<AuthResult> task) {
+                            binding.btnSignIn.setEnabled(true);
+                            if (task.isSuccessful()) {
+                                nav.navigate(R.id.action_signInFragment_to_homeFragment);
+                            } else {
+                                Toast.makeText(requireContext(),
+                                        "Email or password incorrect.", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
         });
 
-        binding.linkCreateAccount.setOnClickListener(
-                v -> nav.navigate(R.id.action_signInFragment_to_registerFragment));
-
-        binding.linkForgotPassword.setOnClickListener(
-                v -> nav.navigate(R.id.action_signInFragment_to_forgotPasswordFragment));
+        binding.linkCreateAccount.setOnClickListener(v ->
+                nav.navigate(R.id.action_signInFragment_to_registerFragment));
+        binding.linkForgotPassword.setOnClickListener(v ->
+                nav.navigate(R.id.action_signInFragment_to_forgotPasswordFragment));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    @Override public void onDestroyView() { super.onDestroyView(); binding = null; }
 }

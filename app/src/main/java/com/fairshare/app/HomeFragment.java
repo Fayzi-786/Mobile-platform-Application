@@ -4,22 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import com.fairshare.app.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomeFragment extends Fragment {
-
     private FragmentHomeBinding binding;
 
-    public HomeFragment() { }
+    public HomeFragment(){}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -34,8 +31,8 @@ public class HomeFragment extends Fragment {
         NavController nav = Navigation.findNavController(view);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String name = (user != null && user.getEmail() != null) ? user.getEmail() : "User";
-        binding.txtWelcome.setText("Welcome, " + name);
+        String who = (user != null && user.getEmail() != null) ? user.getEmail() : "User";
+        binding.txtWelcome.setText("Welcome, " + who);
 
         binding.btnSignOut.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
@@ -44,9 +41,5 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    @Override public void onDestroyView() { super.onDestroyView(); binding = null; }
 }
