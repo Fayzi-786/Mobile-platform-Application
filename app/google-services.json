@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "120292702826",
+    "project_id": "fairshare-bfeba",
+    "storage_bucket": "fairshare-bfeba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120292702826:android:71171763f2874ca430e813",
+        "android_client_info": {
+          "package_name": "com.fairshare.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120292702826-jp9oqspn7mnijb2ukqsidalql0mvjjte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBItvxyBuiwrRpAdOTn4FvVHDxHFm5vFEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120292702826-jp9oqspn7mnijb2ukqsidalql0mvjjte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
