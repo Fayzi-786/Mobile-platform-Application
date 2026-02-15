@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical"
+        android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTitle" android:hint="Title" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editAmount" android:hint="Amount (£)" android:inputType="numberDecimal"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView android:id="@+id/txtDate" android:text="Pick date"
+            android:padding="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editCategory" android:hint="Category (Food, Utilities, ...)"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner android:id="@+id/spPayer" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <TextView android:text="Split between:" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+
+        <LinearLayout android:id="@+id/boxMembers" android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave" android:text="Save expense"
+            android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
